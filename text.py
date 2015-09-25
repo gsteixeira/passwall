@@ -1,0 +1,1 @@
+from models.senhas import Senha, Collection
