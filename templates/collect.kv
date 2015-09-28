@@ -1,0 +1,76 @@
+
+<JanelaCollect>:
+    GridLayout: # janela_collect
+        id: janela_collect
+        cols: 1
+        spacing: 1, 1
+        padding: 1, 1
+        GridLayout: # area_superior
+            cols:2
+            rows:1
+            size_hint: 1.0, 0.1
+            id: area_superior
+            Label:
+                text: 'Colecoes'
+            Button:
+                text: 'add'
+                on_release: root.add()
+        GridLayout:
+            cols: 1
+            layout_content: area_collects
+            ScrollView
+            # scroll_janela_collect
+                id: scroll_janela_collect
+                size: self.size
+                GridLayout: 
+                    cols: 1
+                    spacing: 1, 1
+                    padding: 1, 1
+                    id: area_collects
+                    orientation: 'vertical'
+                    size_hint: 1.0, None
+                    row_default_height: '40dp'
+                    row_force_default: False
+                
+        GridLayout: # area_botoes
+            id: area_botoes
+            cols: 1
+            size_hint: 1.0 , 0.3
+            Button:
+                id: butt_login
+                text: 'Voltar'
+                on_release: root.voltar ()
+
+
+                
+                
+############################################################################
+#area_collects
+<ItemColecao>:
+    GridLayout:
+        rows: 1
+        Label:
+            id: label_butt
+            
+            
+<JanelaAddCollect>:
+    GridLayout:
+        id: janela_add_col
+        cols: 1
+        spacing: 1, 1
+        padding: 1, 1
+        Button:
+            size_hint: 1.0, 0.2
+            text: 'Voltar'
+            on_release: root.voltar()
+        GridLayout:
+            cols: 2
+            Label:
+                id: label_nome
+                text: 'Nome da Colecao'
+            TextInput:
+                id: tx_nome
+                text: ''
+        Button:
+            text: 'salvar'
+            on_release: root.salvar()

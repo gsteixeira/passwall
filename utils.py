@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 
 from base64 import b64encode, b64decode
 from Crypto.Cipher import AES
@@ -14,9 +14,9 @@ AES_IV = 16 * '\x00' # Initialization vector do AES
 
 
 class Encriptador(object):
-    #chave_aes = 
-    def __init__ (self, chave_aes):
-        self.chave_aes = chave_aes
+    def __init__ (self, senha):
+        senha_hash = hashlib.md5 (senha)
+        self.chave_aes = senha_hash.hexdigest()
 
     def _pad (self, txt):
         """
@@ -134,3 +134,30 @@ class Encriptador(object):
 # opcao B: USB -> direto no arquivo
 # opcao C: programa servidor o cara tem q instalar na maquina
 
+def le_enter ():
+    print "\033[1;31m######################################"
+    var = raw_input ("Pressione [ ENTER ]\033[0m")
+    return var
+    
+
+def le_ok ():
+    print "\033[1;31m######################################"
+    var = raw_input ("Confirma? [s/N]\033[0m")
+    if var == "s":
+        return True
+    else:
+        return False
+
+def cls():
+    print "\n" * 15
+    
+def nada():
+    pass
+
+def executa (cmd):
+    print cmd
+    for line in cmd:
+        #print "line"
+        #subprocess.call ( line.split() )
+        subprocess.call ( line, shell=True )
+        

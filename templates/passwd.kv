@@ -1,0 +1,137 @@
+
+    
+<JanelaPassList>:
+    GridLayout: # janela_collect
+        id: janela_collect
+        cols: 1
+        spacing: 1, 1
+        padding: 1, 1
+        GridLayout: # area_superior
+            cols:2
+            rows:1
+            size_hint: 1.0, 0.1
+            id: area_superior
+            Label:
+                id: nome_colecao
+                text: 'Colecoes'
+            Button:
+                text: 'add'
+                on_release: root.add()
+        GridLayout:
+            cols: 1
+            layout_content: area_pass
+            ScrollView
+            # scroll_janela_collect
+                id: scroll_janela_collect
+                size: self.size
+                GridLayout: 
+                    cols: 1
+                    spacing: 1, 1
+                    padding: 1, 1
+                    id: area_pass
+                    orientation: 'vertical'
+                    size_hint: 1.0, None
+                    row_default_height: '40dp'
+                    row_force_default: False
+                
+        GridLayout: # area_botoes
+            id: area_botoes
+            cols: 1
+            size_hint: 1.0 , 0.3
+            Button:
+                id: butt_login
+                text: 'Voltar'
+                on_release: root.voltar ()
+
+
+<JanelaAddPass>:
+    GridLayout:
+        id: janela_add_pass
+        cols: 1
+        spacing: 1, 1
+        padding: 1, 1
+        Button:
+            size_hint: 1.0, 0.2
+            text: 'Voltar'
+            on_release: root.voltar()
+        GridLayout:
+            cols: 2
+            Label:
+                id: label_desc
+                text: 'descricao'
+            TextInput:
+                id: tx_desc
+                text: ''
+            Label:
+                id: label_senha
+                text: 'senha'
+            TextInput:
+                id: tx_password
+                password: True
+                text: ''
+        Button:
+            text: 'salvar'
+            on_release: root.salvar()
+            
+    
+
+<JanelaPassView>:
+    GridLayout:
+        id: janela_pass_view
+        cols: 1
+        spacing: 1, 1
+        padding: 1, 1
+        GridLayout:
+            cols: 1
+        Label:
+            id: tx_desc
+            size_hint: 1.0, 0.2
+            text: 'descricao'
+        Label:
+            id: pass_field
+            size_hint: 1.0, 0.2
+            text: '****'
+        GridLayout:
+            cols: 4
+            spacing: 1, 1
+            padding: 1, 1
+            size_hint: 1.0, 0.1
+            Button:
+                id: butt_show
+                text: 'show'
+                on_release: root.show()
+            Button:
+                id: butt_clip
+                text: 'clip'
+            Button:
+                id: butt_clip
+                text: 'edit'
+            Button:
+                id: butt_clip
+                text: 'del'
+                on_release: root.delete()
+        GridLayout:
+            cols: 1
+        Button:
+            id: butt_login
+            text: 'Voltar'
+            on_release: root.voltar ()
+            
+            
+    
+    
+    
+                
+############################################################################
+#area_collects
+<ItemColecao>:
+    GridLayout:
+        rows: 1
+        Label:
+            id: label_butt
+            
+<ItemPass>:
+    GridLayout:
+        rows: 1
+        Label:
+            id: label_butt

@@ -1,0 +1,37 @@
+
+<JanelaLogin>:
+    GridLayout: # janela_login
+        id: janela_login
+        cols: 1
+        rows: 5
+        spacing: 1, 1
+        padding: 1, 1
+        GridLayout:
+            cols: 1
+        GridLayout: # area_inputs
+            cols:1
+            rows:4
+            size_hint: 1.0, 0.4
+            id: area_inputs
+            Label:
+                text: 'Senha'
+            TextInput:
+                id: tx_password
+                password: True
+                text: ''
+                size_hint: 0.7, 1.0
+        GridLayout:
+            cols: 1
+        GridLayout: # area_botoes
+            id: area_botoes
+            cols: 1
+            size_hint: 1.0 , 0.2
+            Button:
+                id: butt_login
+                text: 'Unlock'
+                on_release: root.do_unlock()
+
+
+                
+                
+############################################################################

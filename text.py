@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 from models.senhas import Senha, Collection
 
 
@@ -41,7 +44,8 @@ class Menu():
             #   print "Unexpected error:", sys.exc_info()
         return True
     
-    
+def menu_colecoes ():
+        
     
 def main_menu ():
             
@@ -54,11 +58,11 @@ def main_menu ():
             """
             default = "1"
             
-        funopts = {
-            '1': lista_colecoes,
-            '0': nada,
-            }
-    cls()
-    
+            funopts = {
+                '1': lista_colecoes,
+                '0': nada,
+                }
+            #cls()
+        
     
     return Menu(opts, funopts, None, default)
