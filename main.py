@@ -1,7 +1,7 @@
 
 import kivy
 kivy.require('1.9.0')
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 
 
 
@@ -20,6 +20,7 @@ from kivy.core.window import Window
 
 
 class ServApp(App):
+    title = 'Passwall'
     encrypter = None
     def build(self):
             

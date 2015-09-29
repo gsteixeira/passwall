@@ -7,16 +7,20 @@
         spacing: 1, 1
         padding: 1, 1
         GridLayout: # area_superior
-            cols:2
+            cols:3
             rows:1
             size_hint: 1.0, 0.1
             id: area_superior
             Label:
                 id: nome_colecao
-                text: 'Colecoes'
+                text: 'Senhas'
+                size_hint: 0.8, 1.0
             Button:
                 text: 'add'
                 on_release: root.add()
+            Button:
+                text: 'edit'
+                on_release: root.edit_collect()
         GridLayout:
             cols: 1
             layout_content: area_pass
@@ -54,22 +58,32 @@
             size_hint: 1.0, 0.2
             text: 'Voltar'
             on_release: root.voltar()
+        GridLayout: # nada
+            cols:1
         GridLayout:
             cols: 2
+            size_hint: 1.0, 0.3
             Label:
                 id: label_desc
                 text: 'descricao'
             TextInput:
                 id: tx_desc
+                multiline: False
                 text: ''
+                on_text_validate: root.ids.tx_password.focus = True
             Label:
                 id: label_senha
                 text: 'senha'
             TextInput:
                 id: tx_password
                 password: True
+                multiline: False
                 text: ''
+                on_text_validate: root.salvar()
+        GridLayout: # nada
+            cols:1
         Button:
+            size_hint: 1.0, 0.3
             text: 'salvar'
             on_release: root.salvar()
             
@@ -95,7 +109,7 @@
             cols: 4
             spacing: 1, 1
             padding: 1, 1
-            size_hint: 1.0, 0.1
+            size_hint: 1.0, 0.3
             Button:
                 id: butt_show
                 text: 'show'
@@ -103,9 +117,11 @@
             Button:
                 id: butt_clip
                 text: 'clip'
+                on_release: root.clip()
             Button:
                 id: butt_clip
                 text: 'edit'
+                on_release: root.edit ()
             Button:
                 id: butt_clip
                 text: 'del'
@@ -115,6 +131,7 @@
         Button:
             id: butt_login
             text: 'Voltar'
+            size_hint: 1.0, 0.3
             on_release: root.voltar ()
             
             

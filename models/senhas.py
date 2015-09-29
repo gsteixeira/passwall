@@ -1,8 +1,17 @@
 
-
 from peewee import *
 
-db = SqliteDatabase('var/db/passwall.db')
+import os
+
+DB_FILE='var/db/passwall.db'
+
+if not os.path.exists(DB_FILE):
+    os.mkdir('var/')
+    os.mkdir('var/db/')
+    f = open (DB_FILE, 'w+')
+    f.close()
+
+db = SqliteDatabase(DB_FILE)
 
 
 
@@ -63,54 +72,54 @@ class Senha (BaseModel):
 
 
 
-class ManCollection (object):
-    def __init__(self):
-        pass
+#class ManCollection (object):
+    #def __init__(self):
+        #pass
     
-    def add (self, data):
-        c = Collection()
-        c.nome = data['nome']
-        c.save()
-        print c.nome
+    #def add (self, data):
+        #c = Collection()
+        #c.nome = data['nome']
+        #c.save()
+        #print c.nome
         
-    def delete (self, aidi):
-        c = Collection.select().where(Collection.id==aidi)
-        for i in c:
-            print i.nome
-            i.delete_instance(recursive=True)
-        
-        
-    def edit (self, data):
-        #aidi = data['id']
-        c = Collection().data_from_dict (data)
-        c.save()
+    #def delete (self, aidi):
+        #c = Collection.select().where(Collection.id==aidi)
+        #for i in c:
+            #print i.nome
+            #i.delete_instance(recursive=True)
         
         
-class ManSenha (object):
-    def __init__(self, collect, encriptador):
-        self.enc = encriptador
-        self.collect = collect
+    #def edit (self, data):
+        ##aidi = data['id']
+        #c = Collection().data_from_dict (data)
+        #c.save()
         
-    def add (self, data):
-        c = Collection()
-        c.desc = data['desc']
-        c.valor = self.enc.encripta( data['valor'] )
-        c.collect = self.collect
-        c.save()
         
-    def edit (self, data):
-        #aidi = data['id']
-        data_enc = data.copy()
-        data_enc['valor'] = self.enc.encripta( data['valor'] )
+#class ManSenha (object):
+    #def __init__(self, collect, encriptador):
+        #self.enc = encriptador
+        #self.collect = collect
         
-        c = Collection().data_from_dict (data_enc)
-        c.save()
+    #def add (self, data):
+        #c = Collection()
+        #c.desc = data['desc']
+        #c.valor = self.enc.encripta( data['valor'] )
+        #c.collect = self.collect
+        #c.save()
         
-    def delete (self, aidi):
-        c = Collection.select().where(Collection.id==aidi)
-        for i in c:
-            print i.nome
-            i.delete_instance(recursive=True)
+    #def edit (self, data):
+        ##aidi = data['id']
+        #data_enc = data.copy()
+        #data_enc['valor'] = self.enc.encripta( data['valor'] )
+        
+        #c = Collection().data_from_dict (data_enc)
+        #c.save()
+        
+    #def delete (self, aidi):
+        #c = Collection.select().where(Collection.id==aidi)
+        #for i in c:
+            #print i.nome
+            #i.delete_instance(recursive=True)
 
 
     

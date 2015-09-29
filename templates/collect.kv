@@ -6,15 +6,22 @@
         spacing: 1, 1
         padding: 1, 1
         GridLayout: # area_superior
-            cols:2
+            cols:3
             rows:1
             size_hint: 1.0, 0.1
             id: area_superior
+            Button:
+                id: butt_sair
+                size_hint: 0.2, 1.0
+                text: '< Sair'
+                on_release: root.voltar ()
+                
             Label:
                 text: 'Colecoes'
             Button:
                 text: 'add'
                 on_release: root.add()
+                size_hint: 0.2, 1.0
         GridLayout:
             cols: 1
             layout_content: area_collects
@@ -36,10 +43,10 @@
             id: area_botoes
             cols: 1
             size_hint: 1.0 , 0.3
-            Button:
-                id: butt_login
-                text: 'Voltar'
-                on_release: root.voltar ()
+            #Button:
+                #id: butt_login
+                #text: 'Voltar'
+                #on_release: root.voltar ()
 
 
                 
@@ -63,14 +70,22 @@
             size_hint: 1.0, 0.2
             text: 'Voltar'
             on_release: root.voltar()
+        GridLayout: # nada
+            cols:1
         GridLayout:
-            cols: 2
+            cols: 1
+            size_hint: 1.0, 0.4
             Label:
                 id: label_nome
                 text: 'Nome da Colecao'
             TextInput:
                 id: tx_nome
                 text: ''
+                multiline: False
+                on_text_validate: root.salvar()
+        GridLayout: #nada
+            cols:1
         Button:
+            size_hint: 1.0, 0.3
             text: 'salvar'
             on_release: root.salvar()

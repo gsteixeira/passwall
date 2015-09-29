@@ -3,7 +3,6 @@ from kivy.uix.screenmanager import Screen
 
 
 from models.senhas import Senha, Collection
-from telas.passwd import JanelaPassList
 
 from kivy.uix.button import Button
 #from kivy.uix.label import Label
@@ -11,6 +10,7 @@ from kivy.uix.button import Button
 #from kivy.uix.dropdown import DropDown
 
 from kivy.uix.gridlayout import GridLayout
+#from telas.passwd import JanelaPassList
 import sys
 #from kivy.uix.behaviors import DragBehavior, ButtonBehavior
 
@@ -21,14 +21,20 @@ class JanelaCollect (Screen):
         self.last_window = last_window
         self.ids.area_collects.bind(minimum_height=self.ids.area_collects.setter('height'))
         self.smanager = smanager
+        self.recarrega()
         
-        
+    def recarrega (self):
+        self.ids.area_collects.clear_widgets()
         cols = Collection.select()
         for c in cols:
             b = ItemColecao (c, smanager=self.smanager)
             self.ids.area_collects.add_widget(b)
+            
+    def on_pre_enter(self):
+        self.recarrega()
     
     def add (self):
+        
         janela = self.smanager.get_screen('janela_add_collect')
         self.smanager.transition.direction = 'left'
         self.smanager.current = 'janela_add_collect'
@@ -52,7 +58,7 @@ class ItemColecao (Button):
         #self.manager.add_widget( jan )
         janela = self.smanager.get_screen('janela_pass_list')
         janela.setup (col=self.collection)
-        self.smanager.transition.direction = 'right'
+        self.smanager.transition.direction = 'left'
         self.smanager.current = 'janela_pass_list'
         
         
@@ -64,7 +70,8 @@ class JanelaAddCollect (Screen):
         self.last_window = last_window
         self.smanager = smanager
         
-        
+    def on_pre_enter(self):
+        self.ids.tx_nome.text = ''
         
     def salvar (self):
         c = Collection()
@@ -76,6 +83,30 @@ class JanelaAddCollect (Screen):
         self.smanager.transition.direction = 'right'
         self.smanager.current = 'janela_pass_list'
         
+    def voltar (self):
+        janela = self.smanager.get_screen('janela_collect')
+        janela.recarrega()
+        self.smanager.transition.direction = 'right'
+        self.smanager.current = 'janela_collect'
+    
         
         
+class JanelaEditCollect (JanelaAddCollect):
+    def setup (self, col):
+        self.collect = col
+    
+    def on_pre_enter(self):
+        self.ids.tx_nome.text = self.collect.nome
+    
+    
+    def salvar (self):
+        c = self.collect
+        c.nome = self.ids.tx_nome.text
+        c.save()
+        # Vai pra view
+        janela = self.smanager.get_screen('janela_pass_list')
+        janela.setup (col=c)
+        self.smanager.transition.direction = 'right'
+        self.smanager.current = 'janela_pass_list'
+        #self.smanager.switch_to = 'janela_pass_list'
         
