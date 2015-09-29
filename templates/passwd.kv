@@ -62,7 +62,7 @@
             cols:1
         GridLayout:
             cols: 2
-            size_hint: 1.0, 0.3
+            #size_hint: 1.0, 0.3
             Label:
                 id: label_desc
                 text: 'descricao'
@@ -70,6 +70,7 @@
                 id: tx_desc
                 multiline: False
                 text: ''
+                height: '16sp'
                 on_text_validate: root.ids.tx_password.focus = True
             Label:
                 id: label_senha
@@ -79,13 +80,16 @@
                 password: True
                 multiline: False
                 text: ''
+                height: '16sp'
                 on_text_validate: root.salvar()
         GridLayout: # nada
             cols:1
-        Button:
+        GridLayout:
+            cols: 1
             size_hint: 1.0, 0.3
-            text: 'salvar'
-            on_release: root.salvar()
+            Button:
+                text: 'salvar'
+                on_release: root.salvar()
             
     
 
@@ -128,11 +132,14 @@
                 on_release: root.delete()
         GridLayout:
             cols: 1
-        Button:
-            id: butt_login
-            text: 'Voltar'
+            
+        GridLayout:
+            cols: 1
             size_hint: 1.0, 0.3
-            on_release: root.voltar ()
+            Button:
+                id: butt_login
+                text: 'Voltar'
+                on_release: root.voltar ()
             
             
     

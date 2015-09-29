@@ -74,7 +74,7 @@
             cols:1
         GridLayout:
             cols: 1
-            size_hint: 1.0, 0.4
+            #size_hint: 1.0, 0.4
             Label:
                 id: label_nome
                 text: 'Nome da Colecao'
@@ -82,10 +82,14 @@
                 id: tx_nome
                 text: ''
                 multiline: False
+                height: '16sp'
                 on_text_validate: root.salvar()
         GridLayout: #nada
             cols:1
-        Button:
+            
+        GridLayout:
+            cols: 1
             size_hint: 1.0, 0.3
-            text: 'salvar'
-            on_release: root.salvar()
+            Button:
+                text: 'salvar'
+                on_release: root.salvar()

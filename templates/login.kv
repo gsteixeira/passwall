@@ -14,7 +14,7 @@
         GridLayout: # area_inputs
             cols:1
             rows:4
-            size_hint: 0.8, 0.4
+            #size_hint: 0.5, 0.5
             id: area_inputs
             Label:
                 text: 'Senha'
@@ -23,14 +23,15 @@
                 password: True
                 multiline: False
                 text: ''
-                size_hint_x: 0.5
+                #size_hint_y: 0.5
+                height: '16sp'
                 on_text_validate: root.do_unlock()
         GridLayout:
             cols: 1
         GridLayout: # area_botoes
             id: area_botoes
             cols: 1
-            size_hint: 1.0 , 0.2
+            size_hint: 1.0 , 0.3
             Button:
                 id: butt_login
                 text: 'Unlock'
@@ -56,7 +57,7 @@
         GridLayout: # area_inputs
             cols:1
             rows:8
-            size_hint: 0.8, 0.4
+            #size_hint: 0.8, 0.4
             id: area_inputs
             Label:
                 text: 'Senha'
@@ -65,7 +66,7 @@
                 password: True
                 multiline: False
                 text: ''
-                size_hint_x: 0.5
+                height: '16sp'
                 on_text_validate: root.ids.tx_password_confirm.focus = True
             Label:
                 text: 'Confirme a Senha'
@@ -74,14 +75,14 @@
                 password: True
                 multiline: False
                 text: ''
-                size_hint_x: 0.5
+                height: '16sp'
                 on_text_validate: root.do_unlock()
         GridLayout:
             cols: 1
         GridLayout: # area_botoes
             id: area_botoes
             cols: 1
-            size_hint: 1.0 , 0.2
+            size_hint: 1.0 , 0.3
             Button:
                 id: butt_login
                 text: 'Unlock'

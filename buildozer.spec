@@ -33,7 +33,7 @@ version.filename = %(source.dir)s/main.py
 
 # (list) Application requirements
 # comma seperated e.g. requirements = sqlite3,kivy
-requirements = kivy,docutils,sqlite3,peewee,pycrypto,openssl
+requirements = kivy,docutils,sqlite3,peewee,pycrypto
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -52,7 +52,7 @@ requirements = kivy,docutils,sqlite3,peewee,pycrypto,openssl
 orientation = all
 
 # (bool) Indicate if the application should be fullscreen or not
-fullscreen = 1
+fullscreen = 0
 
 
 #
