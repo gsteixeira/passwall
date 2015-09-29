@@ -2,7 +2,7 @@ from kivy.uix.screenmanager import Screen
 #from kivy.lang import Builder
 
 
-CHECK_FILE = 'var/db/pcheck.chk'
+CHECK_FILE = '../databases/var/db/pcheck.chk'
 CHECK_STR = 'this should be readable'
 
 

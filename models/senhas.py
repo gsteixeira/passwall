@@ -3,11 +3,12 @@ from peewee import *
 
 import os
 
-DB_FILE='var/db/passwall.db'
+DB_FILE='../databases/var/db/passwall.db'
 
 if not os.path.exists(DB_FILE):
-    os.mkdir('var/')
-    os.mkdir('var/db/')
+    os.mkdir('../databases/')
+    os.mkdir('../databases/var')
+    os.mkdir('../databases/var/db/')
     f = open (DB_FILE, 'w+')
     f.close()
 
