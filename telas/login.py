@@ -55,7 +55,7 @@ class JanelaLogin (Screen):
         if not self.check_pass():
             print "senha errada"
             self.ids.tx_aviso.text = 'As senha nao confere!'
-            #return False
+            return False
         janela = self.smanager.get_screen('janela_collect')
         janela.recarrega()
         # faz uma verificacao pra ver se ta certa
