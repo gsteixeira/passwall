@@ -1,7 +1,7 @@
 from kivy.uix.screenmanager import Screen
 #from kivy.lang import Builder
 
-
+# -*- coding: utf-8 -*-
 from models.senhas import Senha, Collection
 
 from kivy.uix.button import Button
@@ -26,6 +26,7 @@ class JanelaPassView (Screen):
     def setup (self, passwd=None):
         self.passwd = passwd
         self.ids.tx_desc.text = passwd.desc
+        self.ids.pass_field.text = '******'
         
     
     def show (self):
@@ -60,10 +61,6 @@ class JanelaPassView (Screen):
         janela.setup(col=self.passwd.collect)
         self.smanager.transition.direction = 'right'
         self.smanager.current = 'janela_pass_list'
-    
-        
-        
-        
     
 class JanelaPassList (Screen):
     def __init__(self, smanager=None, last_window=None, **kwargs):

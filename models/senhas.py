@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 from peewee import *
 
@@ -28,12 +29,7 @@ class BaseModel(Model):
         database = db
 
     def data_from_dict (self, dictionary, fields=None):
-        
-            
-        #if 'id' in dictionary.keys():
         self, e = self.get_or_create (id=dictionary['id'])
-        #print "model, e", self, e
-        
         if (fields != None):
             for key in fields:
                 if ( key in self._meta.fields.keys()) and ( key in dictionary.keys() ):
@@ -65,64 +61,6 @@ class Senha (BaseModel):
     def save(self, *args, **kwargs):
         self.last_updt = datetime.now()
         return super(Senha, self).save(*args, **kwargs)
-        
-        
-    
 
-
-
-
-
-#class ManCollection (object):
-    #def __init__(self):
-        #pass
-    
-    #def add (self, data):
-        #c = Collection()
-        #c.nome = data['nome']
-        #c.save()
-        #print c.nome
-        
-    #def delete (self, aidi):
-        #c = Collection.select().where(Collection.id==aidi)
-        #for i in c:
-            #print i.nome
-            #i.delete_instance(recursive=True)
-        
-        
-    #def edit (self, data):
-        ##aidi = data['id']
-        #c = Collection().data_from_dict (data)
-        #c.save()
-        
-        
-#class ManSenha (object):
-    #def __init__(self, collect, encriptador):
-        #self.enc = encriptador
-        #self.collect = collect
-        
-    #def add (self, data):
-        #c = Collection()
-        #c.desc = data['desc']
-        #c.valor = self.enc.encripta( data['valor'] )
-        #c.collect = self.collect
-        #c.save()
-        
-    #def edit (self, data):
-        ##aidi = data['id']
-        #data_enc = data.copy()
-        #data_enc['valor'] = self.enc.encripta( data['valor'] )
-        
-        #c = Collection().data_from_dict (data_enc)
-        #c.save()
-        
-    #def delete (self, aidi):
-        #c = Collection.select().where(Collection.id==aidi)
-        #for i in c:
-            #print i.nome
-            #i.delete_instance(recursive=True)
-
-
-    
     
 db.create_tables([ Collection, Senha ], safe=True)

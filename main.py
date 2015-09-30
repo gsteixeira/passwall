@@ -1,10 +1,7 @@
 
 import kivy
 kivy.require('1.9.0')
-__version__ = '0.0.3'
-
-
-
+__version__ = '0.0.4'
 
 from kivy.app import App
 from kivy.lang import Builder
@@ -17,13 +14,10 @@ from telas.passwd import JanelaPassList, JanelaPassView, JanelaAddPass
 
 from kivy.core.window import Window
 
-
-
 class ServApp(App):
     title = 'Passwall'
     encrypter = None
     def build(self):
-            
         Builder.load_file('templates/login.kv')
         Builder.load_file('templates/collect.kv')
         Builder.load_file('templates/passwd.kv')
@@ -37,16 +31,13 @@ class ServApp(App):
         sm.add_widget(JanelaCollect(smanager=sm, name='janela_collect') )
         sm.add_widget(JanelaAddCollect(smanager=sm, name='janela_add_collect') )
         
-        
         sm.current = 'janela_login'
-        
         return sm
     
     def on_pause (self):
         return True
-    
-    
-#it = Item ('a')
+
 
 if __name__ == '__main__':
     ServApp().run()
+    

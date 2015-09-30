@@ -70,61 +70,12 @@ class Encriptador(object):
         return self._unpad(txt)
 
 
-
-#senha = '123'
-##senha = raw_input ('digite a senha: ')
-#senha_hash = hashlib.md5 (senha)
-#CHAVE_AES = senha_hash.hexdigest()
-
-
-#e = Encriptador (CHAVE_AES)
-
-
-#enc=  e.encripta ('teste123')
-#print "enc: ", enc
-#print "dec: ", e.decripta (enc)
-
-
-
 # user abre o programa
 # pede a senha, faz o hash e guarda numa variavel CHAVE_AES
 # testa se ta certa, continua, senao volta
 # se de certo tu tem um encriptador com a chave setada, so usalo daqui pra frente
 # 
 
-
-# o soft vai ser mais ou menos assim:
-#models:
-    #colection (uma colecao de senhas) 
-        #nome,
-        ######syncronizado bool
-        ######last update
-    #senha
-        #descricao (donde essa senha eh)
-        #valor (cryptografado)
-        #colecao a qq pertence
-        ######syncronizado bool
-        ######last update
-        
-#qdo inicia a primeira vez, cria um collection basico
-#interface
-    #tela inicial
-        # lista
-        # + um botao nova colecao
-        #accordions com as colecoes
-            # abre um aparece as senhas q tem nele, so o nome, eh um botao
-            # qdo o cara clica nela abre a tela senha
-            # + mais um botao 'nova senha'
-            
-        #a tela senha vai aparecer:
-            #descricao, data, relatorio de sync
-            #botoes: ver, copy to clipboard, editar, remover
-            # no editar tem q dar pra trocar de colecao
-            
-            
-            
-            
-            
 
 #Sincronizacao
 #A B
@@ -133,31 +84,3 @@ class Encriptador(object):
 # opcao A: pela rede : abrir um socket e conversar por REST
 # opcao B: USB -> direto no arquivo
 # opcao C: programa servidor o cara tem q instalar na maquina
-
-def le_enter ():
-    print "\033[1;31m######################################"
-    var = raw_input ("Pressione [ ENTER ]\033[0m")
-    return var
-    
-
-def le_ok ():
-    print "\033[1;31m######################################"
-    var = raw_input ("Confirma? [s/N]\033[0m")
-    if var == "s":
-        return True
-    else:
-        return False
-
-def cls():
-    print "\n" * 15
-    
-def nada():
-    pass
-
-def executa (cmd):
-    print cmd
-    for line in cmd:
-        #print "line"
-        #subprocess.call ( line.split() )
-        subprocess.call ( line, shell=True )
-        
