@@ -22,7 +22,7 @@ class JanelaCollect (Screen):
         self.last_window = last_window
         self.ids.area_collects.bind(minimum_height=self.ids.area_collects.setter('height'))
         self.smanager = smanager
-        self.recarrega()
+        #self.recarrega()
         
     def recarrega (self):
         self.ids.area_collects.clear_widgets()
@@ -50,8 +50,8 @@ class ItemColecao (Button):
     def __init__ (self, col, smanager=None, **kwargs):
         super(ItemColecao, self).__init__(**kwargs)
         self.collection = col
-        self.text = col.nome
         self.smanager = smanager
+        self.text = self.smanager.encrypter.decripta (col.nome)
         
     def on_release (self, **kwargs):
         super(ItemColecao, self).on_release(**kwargs)
@@ -76,7 +76,7 @@ class JanelaAddCollect (Screen):
         
     def salvar (self):
         c = Collection()
-        c.nome = self.ids.tx_nome.text
+        c.nome = self.smanager.encrypter.encripta (self.ids.tx_nome.text )
         c.save()
         # Vai pra view
         janela = self.smanager.get_screen('janela_pass_list')
@@ -97,12 +97,12 @@ class JanelaEditCollect (JanelaAddCollect):
         self.collect = col
     
     def on_pre_enter(self):
-        self.ids.tx_nome.text = self.collect.nome
+        self.ids.tx_nome.text = self.smanager.encrypter.decripta (self.collect.nome)
     
     
     def salvar (self):
         c = self.collect
-        c.nome = self.ids.tx_nome.text
+        c.nome = self.smanager.encrypter.encripta (self.ids.tx_nome.text)
         c.save()
         # Vai pra view
         janela = self.smanager.get_screen('janela_pass_list')

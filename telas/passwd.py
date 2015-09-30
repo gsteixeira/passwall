@@ -25,7 +25,7 @@ class JanelaPassView (Screen):
     
     def setup (self, passwd=None):
         self.passwd = passwd
-        self.ids.tx_desc.text = passwd.desc
+        self.ids.tx_desc.text = self.smanager.encrypter.decripta ( passwd.desc )
         self.ids.pass_field.text = '******'
         
     
@@ -71,7 +71,7 @@ class JanelaPassList (Screen):
     
     def setup (self, col=None):
         self.collection = col
-        self.ids.nome_colecao.text = self.collection.nome
+        self.ids.nome_colecao.text = self.smanager.encrypter.decripta (self.collection.nome)
         
         self.recarrega()
         #self.ids.area_pass.clear_widgets()
@@ -115,8 +115,8 @@ class ItemPass (Button):
     def __init__ (self, passwd, smanager=None, **kwargs):
         super(ItemPass, self).__init__(**kwargs)
         self.passwd = passwd
-        self.text = passwd.desc
         self.smanager = smanager
+        self.text = self.smanager.encrypter.decripta (passwd.desc)
         
         
     def on_release (self, **kwargs):
@@ -145,7 +145,7 @@ class JanelaAddPass (Screen):
     def salvar (self):
         s = Senha()
         s.collect = self.collect
-        s.desc = self.ids.tx_desc.text
+        s.desc = self.smanager.encrypter.encripta (self.ids.tx_desc.text)
         s.valor = self.smanager.encrypter.encripta (self.ids.tx_password.text)
         s.save()
         # Vai pra view
@@ -179,7 +179,7 @@ class JanelaEditPass (JanelaAddPass):
         self.passwd = passwd
     
     def on_pre_enter(self):
-        self.ids.tx_desc.text = self.passwd.desc
+        self.ids.tx_desc.text = self.smanager.encrypter.decripta (self.passwd.desc)
         try:
             self.ids.tx_password.text = self.smanager.encrypter.decripta (self.passwd.valor)
         except:
@@ -197,7 +197,7 @@ class JanelaEditPass (JanelaAddPass):
     def salvar (self):
         s = self.passwd
         s.collect = self.passwd.collect
-        s.desc = self.ids.tx_desc.text
+        s.desc = self.smanager.encrypter.encripta (self.ids.tx_desc.text)
         if (self.ids.tx_password.text):
             s.valor = self.smanager.encrypter.encripta (self.ids.tx_password.text)
         s.save()

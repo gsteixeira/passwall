@@ -7,9 +7,10 @@ import os
 DB_FILE='../databases/var/db/passwall.db'
 
 if not os.path.exists(DB_FILE):
-    os.mkdir('../databases/')
-    os.mkdir('../databases/var')
-    os.mkdir('../databases/var/db/')
+    try:
+        os.makedirs ('../databases/var/db/', 0700)
+    except:
+        pass
     f = open (DB_FILE, 'w+')
     f.close()
 
@@ -21,8 +22,6 @@ db.connect()
 
 from datetime import datetime
 
-
-# -*- coding: utf-8 -*-
 
 class BaseModel(Model):
     class Meta:
@@ -42,8 +41,8 @@ class BaseModel(Model):
         
         
 class Collection (BaseModel):
-    nome = CharField (max_length=70, null=True)
-    last_updt = DateTimeField ( null=True )
+    nome = TextField (null=True)
+    last_updt = DateTimeField (null=True)
     
     def save(self, *args, **kwargs):
         self.last_updt = datetime.now()
@@ -52,8 +51,8 @@ class Collection (BaseModel):
     
     
 class Senha (BaseModel):
-    desc = CharField (max_length=70, null=True)
-    valor = CharField (max_length=4096, null=True)
+    desc = TextField (null=True)
+    valor = TextField (null=True)
     collect = ForeignKeyField (Collection, related_name='senha_collect', null=True)
     
     last_updt = DateTimeField ( null=True )
