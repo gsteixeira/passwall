@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = PasswordWallet
+title = PassWall
 
 # (str) Package name
 package.name = passwall
@@ -44,9 +44,12 @@ requirements = kivy,docutils,sqlite3,peewee,pycrypto
 
 # (str) Presplash of the application
 #presplash.filename = %(source.dir)s/data/presplash.png
+presplash.filename = templates/images/splash.png
 
 # (str) Icon of the application
 #icon.filename = %(source.dir)s/data/icon.png
+icon.filename = templates/images/icon.png
+
 
 # (str) Supported orientation (one of landscape, portrait or all)
 orientation = all
