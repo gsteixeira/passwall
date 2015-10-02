@@ -69,7 +69,7 @@ fullscreen = 0
 #android.api = 14
 
 # (int) Minimum API required (8 = Android 2.2 devices)
-#android.minapi = 8
+android.minapi = 13
 
 # (int) Android SDK version to use
 #android.sdk = 21

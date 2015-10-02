@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from base64 import b64encode, b64decode
 from Crypto.Cipher import AES
 
 
 import hashlib
-
-
 
 
 AES_BLOCK_SIZE = 256  # Tamanho do bloco AES
@@ -19,14 +16,7 @@ class Encriptador(object):
         self.chave_aes = senha_hash.hexdigest()
 
     def _pad (self, txt):
-        """
-        Funcao que faz o padding, preenche o resto da string para que 
-        o tamanho seja multiplo de 16.
-        
-            :param txt: string a ser 'padeada'
-            :return: uma string 'padeada'
-        """
-        bs = AES_BLOCK_SIZE # Tamanho do bloco AES
+        bs = AES_BLOCK_SIZE
         length = bs - (len(txt) % bs)
         txt += chr(length)*length
         return txt
@@ -36,12 +26,6 @@ class Encriptador(object):
         return txt[0:-ord(txt[-1])]
         
     def encripta (self, txt):
-        """
-        Funcao que encripta a mensagem que sera enviada ao controlador
-        
-            :param txt: string a ser encriptada
-            :return: string encriptada
-        """
         enc = AES.new(
                 self.chave_aes,
                 AES.MODE_CBC,
@@ -49,18 +33,17 @@ class Encriptador(object):
             )
         ciphertext = enc.encrypt( self._pad(txt) )
         b64_txt = b64encode (ciphertext)
-        crypt_txt = b64_txt.replace('+','-').replace('/','_').replace('=','!')
+        #return b64_txt
+        # valid chars + / =
+        # replace     - _ !
+        #             < > ?
+        crypt_txt = b64_txt.replace('+','<').replace('/','>').replace('=','?')
         return crypt_txt
 
     def decripta (self, crypt_txt):
-        """
-        Funcao que decripta a mensagem que sera enviada ao controlador
-        
-            :param crypt_txt: string a ser decriptada
-            :return: uma string 
-        """
-        ciphertext = crypt_txt.replace('-','+').replace('_','/').replace('!','=')
+        ciphertext = crypt_txt.replace('<','+').replace('>','/').replace('?','=')
         b64_txt = b64decode ( ciphertext )
+        #b64_txt = b64decode ( crypt_txt )
         enc = AES.new(
                 self.chave_aes,
                 AES.MODE_CBC,
