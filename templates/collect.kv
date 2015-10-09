@@ -71,7 +71,15 @@
             text: 'Voltar'
             on_release: root.voltar()
         GridLayout: # nada
+            id: espaco_superior
             cols:1
+            StackLayout:
+                id: button_deleta
+                orientation: 'tb-rl'
+                Button:
+                    size_hint: 0.2, 0.2
+                    text: 'del'
+                    on_release: root.delete()
         GridLayout:
             cols: 1
             #size_hint: 1.0, 0.4
@@ -82,7 +90,8 @@
                 id: tx_nome
                 text: ''
                 multiline: False
-                height: '16sp'
+                size_hint_y: None
+                height: '42sp'
                 on_text_validate: root.salvar()
         GridLayout: #nada
             cols:1

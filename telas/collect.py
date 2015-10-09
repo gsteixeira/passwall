@@ -11,6 +11,7 @@ from kivy.uix.button import Button
 #from kivy.uix.dropdown import DropDown
 
 from kivy.uix.gridlayout import GridLayout
+from telas.login import Confirma
 #from telas.passwd import JanelaPassList
 import sys
 #from kivy.uix.behaviors import DragBehavior, ButtonBehavior
@@ -33,10 +34,14 @@ class JanelaCollect (Screen):
             
     def on_pre_enter(self):
         self.recarrega()
+    def on_leave(self):
+        self.smanager.remove_widget (self)
     
     def add (self):
-        
-        janela = self.smanager.get_screen('janela_add_collect')
+        from telas.collect import JanelaAddCollect
+        janela = JanelaAddCollect(smanager=self.smanager, name='janela_add_collect')
+        self.smanager.add_widget( janela )
+        #janela = self.smanager.get_screen('janela_add_collect')
         self.smanager.transition.direction = 'left'
         self.smanager.current = 'janela_add_collect'
         
@@ -55,9 +60,12 @@ class ItemColecao (Button):
         
     def on_release (self, **kwargs):
         super(ItemColecao, self).on_release(**kwargs)
-        #jan = JanelaPassList( col=self.collection, name='janela_pass_list')
-        #self.manager.add_widget( jan )
-        janela = self.smanager.get_screen('janela_pass_list')
+        
+        from telas.passwd import JanelaPassList
+        janela = JanelaPassList( smanager=self.smanager, name='janela_pass_list')
+        self.smanager.add_widget( janela )
+        #janela = self.smanager.get_screen('janela_pass_list')
+        
         janela.setup (col=self.collection)
         self.smanager.transition.direction = 'left'
         self.smanager.current = 'janela_pass_list'
@@ -72,23 +80,40 @@ class JanelaAddCollect (Screen):
         self.smanager = smanager
         
     def on_pre_enter(self):
+        self.ids.espaco_superior.remove_widget (self.ids.button_deleta)
         self.ids.tx_nome.text = ''
+        
+    def on_leave (self):
+        self.smanager.remove_widget(self)
         
     def salvar (self):
         c = Collection()
         c.nome = self.smanager.encrypter.encripta (self.ids.tx_nome.text )
         c.save()
         # Vai pra view
-        janela = self.smanager.get_screen('janela_pass_list')
+        #janela = self.smanager.get_screen('janela_pass_list')
+        from telas.passwd import JanelaPassList
+        janela = JanelaPassList( smanager=self.smanager, name='janela_pass_list')
+        self.smanager.add_widget( janela )
+        
         janela.setup (col=c)
         self.smanager.transition.direction = 'right'
         self.smanager.current = 'janela_pass_list'
         
     def voltar (self):
-        janela = self.smanager.get_screen('janela_collect')
+        from telas.collect import JanelaCollect
+        janela = JanelaCollect(smanager=self.smanager, name='janela_collect')
+        self.smanager.add_widget( janela )
         janela.recarrega()
         self.smanager.transition.direction = 'right'
         self.smanager.current = 'janela_collect'
+        
+        
+        
+        #janela = self.smanager.get_screen('janela_collect')
+        #janela.recarrega()
+        #self.smanager.transition.direction = 'right'
+        #self.smanager.current = 'janela_collect'
     
         
         
@@ -99,13 +124,30 @@ class JanelaEditCollect (JanelaAddCollect):
     def on_pre_enter(self):
         self.ids.tx_nome.text = self.smanager.encrypter.decripta (self.collect.nome)
     
-    
+    def on_leave (self):
+        self.smanager.remove_widget(self)
+
+    def _really_delete(self, really):
+        if really:
+            self.collect.delete_instance(recursive=True)
+            self.voltar()
+            
+    def delete (self):
+        p = Confirma (callback=self._really_delete)
+        p.open()
+        
+        
+        
     def salvar (self):
         c = self.collect
         c.nome = self.smanager.encrypter.encripta (self.ids.tx_nome.text)
         c.save()
         # Vai pra view
-        janela = self.smanager.get_screen('janela_pass_list')
+        #janela = self.smanager.get_screen('janela_pass_list')
+        from telas.passwd import JanelaPassList
+        janela = JanelaPassList( smanager=self.smanager, name='janela_pass_list')
+        self.smanager.add_widget( janela )
+        
         janela.setup (col=c)
         self.smanager.transition.direction = 'right'
         self.smanager.current = 'janela_pass_list'

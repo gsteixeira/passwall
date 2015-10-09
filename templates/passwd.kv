@@ -70,7 +70,8 @@
                 id: tx_desc
                 multiline: False
                 text: ''
-                height: '16sp'
+                height: '42sp'
+                size_hint_y: None
                 on_text_validate: root.ids.tx_password.focus = True
             Label:
                 id: label_senha
@@ -80,7 +81,8 @@
                 password: True
                 multiline: False
                 text: ''
-                height: '16sp'
+                height: '42sp'
+                size_hint_y: None
                 on_text_validate: root.salvar()
         GridLayout: # nada
             cols:1

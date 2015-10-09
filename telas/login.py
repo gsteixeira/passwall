@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 from kivy.uix.screenmanager import Screen
 #from kivy.lang import Builder
-
+from kivy.uix.popup import Popup
 
 CHECK_FILE = '../databases/var/db/pcheck.chk'
 CHECK_STR = 'this should be readable'
+
+
+
 
 
 
@@ -16,6 +19,16 @@ import os
 import hashlib
 
 
+        
+class Confirma (Popup):
+    def __init__(self, callback=None, **kwargs):
+        self.callback=callback
+        super(Confirma, self).__init__(**kwargs)
+        
+        
+    def anwser (self, value):
+        self.callback (value)
+        self.dismiss()
 
 
 class JanelaLogin (Screen):
@@ -34,10 +47,10 @@ class JanelaLogin (Screen):
             self.smanager.add_widget( janela )
             self.smanager.transition.direction = 'left'
             self.smanager.current = 'janela_first_login'
-            
-            
-            
-            
+
+    def on_leave (self):
+        self.smanager.remove_widget(self)
+        
     def check_pass (self):
         f = open (CHECK_FILE, 'r')
         check = f.read()
@@ -46,9 +59,10 @@ class JanelaLogin (Screen):
             return True
         else:
             return False
-        
+     
         
     def do_unlock (self):
+
         senha = self.ids.tx_password.text
         self.smanager.encrypter = Encriptador (senha)
         # verifica se a senha e correta
@@ -56,9 +70,11 @@ class JanelaLogin (Screen):
             print "senha errada"
             self.ids.tx_aviso.text = 'As senha nao confere!'
             return False
-        janela = self.smanager.get_screen('janela_collect')
+        
+        from telas.collect import JanelaCollect
+        janela = JanelaCollect(smanager=self.smanager, name='janela_collect')
+        self.smanager.add_widget( janela )
         janela.recarrega()
-        # faz uma verificacao pra ver se ta certa
         self.smanager.transition.direction = 'up'
         self.smanager.current = 'janela_collect'
     
@@ -87,11 +103,18 @@ class JanelaFirstLogin (Screen):
             f.write ( self.smanager.encrypter.encripta (CHECK_STR) )
             f.close()
             
-            janela = self.smanager.get_screen('janela_collect')
+            from telas.collect import JanelaCollect
+            janela = JanelaCollect(smanager=self.smanager, name='janela_collect')
+            self.smanager.add_widget( janela )
             janela.recarrega()
-            # faz uma verificacao pra ver se ta certa
             self.smanager.transition.direction = 'up'
             self.smanager.current = 'janela_collect'
+            
+            #janela = self.smanager.get_screen('janela_collect')
+            #janela.recarrega()
+            ## faz uma verificacao pra ver se ta certa
+            #self.smanager.transition.direction = 'up'
+            #self.smanager.current = 'janela_collect'
         
         
         
