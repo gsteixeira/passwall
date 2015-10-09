@@ -1,0 +1,14 @@
+
+<Confirma>:
+    #title: 'Confirmar'
+    auto_dismiss: False
+    size_hint: 0.8, 0.3
+    GridLayout:
+        cols: 2
+        Button:
+            text: 'Sim'
+            on_release: root.anwser(True)
+        Button:
+            text: 'Nao'
+            on_release: root.anwser(False)
+                

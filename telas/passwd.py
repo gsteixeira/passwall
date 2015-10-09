@@ -13,7 +13,7 @@ from kivy.core.clipboard import Clipboard
 from kivy.uix.gridlayout import GridLayout
 
 
-from telas.login import Confirma
+from telas.utilities import Confirma
 #from telas.collect import JanelaEditCollect
 #from telas.collect import JanelaAddPass, JanelaEditCollect
 
@@ -50,7 +50,7 @@ class JanelaPassView (Screen):
             self.voltar()
             
     def delete (self):
-        p = Confirma (callback=self._really_delete)
+        p = Confirma (callback=self._really_delete, text='Remover senha?')
         p.open()
         
     def edit (self):

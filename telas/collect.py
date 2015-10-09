@@ -11,7 +11,7 @@ from kivy.uix.button import Button
 #from kivy.uix.dropdown import DropDown
 
 from kivy.uix.gridlayout import GridLayout
-from telas.login import Confirma
+from telas.utilities import Confirma
 #from telas.passwd import JanelaPassList
 import sys
 #from kivy.uix.behaviors import DragBehavior, ButtonBehavior
@@ -23,7 +23,6 @@ class JanelaCollect (Screen):
         self.last_window = last_window
         self.ids.area_collects.bind(minimum_height=self.ids.area_collects.setter('height'))
         self.smanager = smanager
-        #self.recarrega()
         
     def recarrega (self):
         self.ids.area_collects.clear_widgets()
@@ -108,12 +107,6 @@ class JanelaAddCollect (Screen):
         self.smanager.transition.direction = 'right'
         self.smanager.current = 'janela_collect'
         
-        
-        
-        #janela = self.smanager.get_screen('janela_collect')
-        #janela.recarrega()
-        #self.smanager.transition.direction = 'right'
-        #self.smanager.current = 'janela_collect'
     
         
         
@@ -133,7 +126,7 @@ class JanelaEditCollect (JanelaAddCollect):
             self.voltar()
             
     def delete (self):
-        p = Confirma (callback=self._really_delete)
+        p = Confirma (callback=self._really_delete, text='Remover Colecao?')
         p.open()
         
         

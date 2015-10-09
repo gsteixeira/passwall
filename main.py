@@ -21,6 +21,7 @@ class ServApp(App):
         Builder.load_file('templates/login.kv')
         Builder.load_file('templates/collect.kv')
         Builder.load_file('templates/passwd.kv')
+        Builder.load_file('templates/utilities.kv')
         win = Window.softinput_mode = 'resize'
         
         sm = ScreenManager()

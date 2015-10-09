@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from kivy.uix.screenmanager import Screen
 #from kivy.lang import Builder
-from kivy.uix.popup import Popup
 
 CHECK_FILE = '../databases/var/db/pcheck.chk'
 CHECK_STR = 'this should be readable'
@@ -19,16 +18,6 @@ import os
 import hashlib
 
 
-        
-class Confirma (Popup):
-    def __init__(self, callback=None, **kwargs):
-        self.callback=callback
-        super(Confirma, self).__init__(**kwargs)
-        
-        
-    def anwser (self, value):
-        self.callback (value)
-        self.dismiss()
 
 
 class JanelaLogin (Screen):
@@ -47,6 +36,8 @@ class JanelaLogin (Screen):
             self.smanager.add_widget( janela )
             self.smanager.transition.direction = 'left'
             self.smanager.current = 'janela_first_login'
+        else:
+            self.ids.tx_password.focus = True
 
     def on_leave (self):
         self.smanager.remove_widget(self)
