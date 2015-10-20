@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import kivy
 kivy.require('1.9.0')
-__version__ = '0.0.9'
+__version__ = '0.1.0'
 
 from kivy.app import App
 from kivy.lang import Builder
@@ -13,6 +13,8 @@ from telas.login import JanelaLogin
 #from telas.passwd import JanelaPassList, JanelaPassView, JanelaAddPass
 
 from kivy.core.window import Window
+
+
 
 class ServApp(App):
     title = 'Passwall'

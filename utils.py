@@ -61,7 +61,13 @@ class Encriptador(object):
         stored_txt = crypt_txt.replace('<','+').replace('>','/').replace('?','=')
         spltxt = stored_txt.split('#')
         ciphertext = spltxt[0]
-        aes_iv = spltxt[1]
+        #aes_iv = spltxt[1]
+        # serve para compatibilidade entre as versoes 0.0.8 e 0.0.9
+        try:
+            aes_iv = spltxt[1]
+        except:
+            aes_iv = AES_IV
+            #aes_iv = gera_aleatorios (16) # ferra tudo
         b64_txt = b64decode ( ciphertext )
         enc = AES.new(
                 self.chave_aes,
