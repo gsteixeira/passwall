@@ -13,11 +13,11 @@
             Button:
                 id: butt_sair
                 size_hint: 0.2, 1.0
-                text: '< Sair'
+                text: '< Exit'
                 on_release: root.voltar ()
                 
             Label:
-                text: 'Colecoes'
+                text: 'Collections'
             Button:
                 text: 'add'
                 on_release: root.add()
@@ -68,7 +68,7 @@
         padding: 1, 1
         Button:
             size_hint: 1.0, 0.2
-            text: 'Voltar'
+            text: 'Back'
             on_release: root.voltar()
         GridLayout: # nada
             id: espaco_superior
@@ -85,7 +85,7 @@
             #size_hint: 1.0, 0.4
             Label:
                 id: label_nome
-                text: 'Nome da Colecao'
+                text: 'Collection Name'
             TextInput:
                 id: tx_nome
                 text: ''
@@ -100,5 +100,5 @@
             cols: 1
             size_hint: 1.0, 0.3
             Button:
-                text: 'salvar'
+                text: 'save'
                 on_release: root.salvar()

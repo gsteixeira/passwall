@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import kivy
 kivy.require('1.9.0')
-__version__ = '0.0.8'
+__version__ = '0.0.9'
 
 from kivy.app import App
 from kivy.lang import Builder
