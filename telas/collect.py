@@ -6,15 +6,10 @@ from kivy.uix.screenmanager import Screen
 from models.senhas import Senha, Collection
 
 from kivy.uix.button import Button
-#from kivy.uix.label import Label
-#from kivy.uix.checkbox import CheckBox
-#from kivy.uix.dropdown import DropDown
 
 from kivy.uix.gridlayout import GridLayout
 from telas.utilities import Confirma
-#from telas.passwd import JanelaPassList
 import sys
-#from kivy.uix.behaviors import DragBehavior, ButtonBehavior
 
 class JanelaCollect (Screen):
     def __init__(self, smanager=None, last_window=None, **kwargs):
