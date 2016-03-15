@@ -12,3 +12,118 @@
             text: 'No'
             on_release: root.anwser(False)
                 
+
+
+
+<JanelaSettings>:
+    GridLayout: # janela_settings
+        id: janela_settings
+        cols: 1
+        spacing: 1, 1
+        padding: 1, 1
+        GridLayout: # area_superior
+            cols:3
+            rows:1
+            size_hint: 1.0, 0.1
+            id: area_superior
+            Button:
+                id: butt_sair
+                size_hint: 0.2, 1.0
+                text: '< Exit'
+                on_release: root.voltar ()
+                
+            Label:
+                text: 'Settings'
+            #Button:
+                #text: 'add'
+                #on_release: root.add()
+                #size_hint: 0.2, 1.0
+        GridLayout:
+            cols: 1
+            layout_content: area_settings
+            ScrollView
+            # scroll_janela_setting
+                id: scroll_janela_setting
+                size: self.size
+                GridLayout: 
+                    cols: 1
+                    spacing: 1, 1
+                    padding: 1, 1
+                    id: area_settings
+                    orientation: 'vertical'
+                    size_hint: 1.0, None
+                    row_default_height: '40dp'
+                    row_force_default: False
+                    Button:
+                        text: 'Backup/Restore'
+                        on_release: root.call_backups()
+                    Button:
+                        text: 'Erase Database'
+                        on_release: root.do_erasedb()
+                        
+                
+        GridLayout: # area_botoes
+            id: area_botoes
+            cols: 1
+            size_hint: 1.0 , 0.3
+
+
+
+
+
+<JanelaBackup>:
+    GridLayout: # janela_settings
+        id: janela_settings
+        cols: 1
+        spacing: 1, 1
+        padding: 1, 1
+        GridLayout: # area_superior
+            cols:1
+            GridLayout: 
+                cols:3
+                rows:1
+                size_hint: 1.0, 0.2
+                Button:
+                    id: butt_sair
+                    size_hint: 0.2, 1.0
+                    text: '< Exit'
+                    on_release: root.voltar ()
+                    
+                Label:
+                    text: 'Backup'
+                        
+            TextInput:
+                id: tx_bkppath
+                size_hint: 1.0, 0.3
+                #text: '/sdcard0/passwall.db'
+                text: 'passwallbk.db'
+
+            Button:
+                id: butt_do_backup
+                text: 'Backup'
+                on_release: root.do_backup()
+                #size_hint: 1.0, 0.1
+                    
+            Button:
+                id: butt_do_restore
+                text: 'Restore'
+                on_release: root.do_restore()
+                #size_hint: 1.0, 0.1d
+            Label:
+                id: lb_result
+                text: ''
+                
+
+                
+                        
+                
+        GridLayout: # area_botoes
+            id: area_botoes
+            cols: 1
+            size_hint: 1.0 , 0.3
+
+
+                
+                
+                
+                

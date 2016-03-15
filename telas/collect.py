@@ -8,8 +8,9 @@ from models.senhas import Senha, Collection
 from kivy.uix.button import Button
 
 from kivy.uix.gridlayout import GridLayout
-from telas.utilities import Confirma
+from telas.utilities import Confirma, JanelaSettings
 import sys
+
 
 class JanelaCollect (Screen):
     def __init__(self, smanager=None, last_window=None, **kwargs):
@@ -30,7 +31,15 @@ class JanelaCollect (Screen):
         self.recarrega()
     def on_leave(self):
         self.smanager.remove_widget (self)
-    
+        
+    def call_settings (self):
+        from telas.collect import JanelaSettings
+        janela = JanelaSettings(smanager=self.smanager, name='janela_settings')
+        self.smanager.add_widget( janela )
+        #janela = self.smanager.get_screen('janela_add_collect')
+        self.smanager.transition.direction = 'left'
+        self.smanager.current = 'janela_settings'
+        
     def add (self):
         from telas.collect import JanelaAddCollect
         janela = JanelaAddCollect(smanager=self.smanager, name='janela_add_collect')

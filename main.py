@@ -13,7 +13,6 @@ from telas.login import JanelaLogin
 from kivy.core.window import Window
 
 
-
 class ServApp(App):
     title = 'Passwall'
     encrypter = None
@@ -22,7 +21,9 @@ class ServApp(App):
         Builder.load_file('templates/collect.kv')
         Builder.load_file('templates/passwd.kv')
         Builder.load_file('templates/utilities.kv')
-        win = Window.softinput_mode = 'resize'
+        #print type(Window)
+        #win = Window()
+        #win = Window.softinput_mode = 'resize'
         
         sm = ScreenManager()
         sm.add_widget(JanelaLogin(smanager=sm, name='janela_login') )
