@@ -4,7 +4,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
 
 import sqlite3
-import sqlitebck
+#import sqlitebck
         
 def date_handler(obj):
     return obj.isoformat() if hasattr(obj, 'isoformat') else obj
@@ -58,11 +58,9 @@ class JanelaSettings (Screen):
                 os.remove (DB_FILE)
             except:
                 pass
-            print "criando tabela"
             db = SqliteDatabase(DB_FILE)
             db.connect()
             db.create_tables([ Collection, Senha ], safe=True)
-            print "criada?"
             
         
     def voltar (self):
@@ -109,15 +107,24 @@ class JanelaBackup (Screen):
 
     def copy_bkp (self, mode='bkp'):
         from models.senhas import DB_FILE
+        import shutil
+        
         bkp_file = self.ids.tx_bkppath.text
-        data = sqlite3.connect(DB_FILE)
-        bkp = sqlite3.connect(bkp_file)
-        if mode == 'bkp':
-            sqlitebck.copy(data , bkp)
-        elif mode == 'restore':
-            sqlitebck.copy(bkp , data)
-        data.close()
-        bkp.close()
+        try:
+            if mode == 'bkp':
+                shutil.copyfile (data , bkp)
+            elif mode == 'restore':
+                shutil.copyfile (bkp , data)
+        except:
+            self.ids.lb_result.text = 'Error!'
+        #data = sqlite3.connect(DB_FILE)
+        #bkp = sqlite3.connect(bkp_file)
+        #if mode == 'bkp':
+            #sqlitebck.copy(data , bkp)
+        #elif mode == 'restore':
+            #sqlitebck.copy(bkp , data)
+        #data.close()
+        #bkp.close()
         
         
     

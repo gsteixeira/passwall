@@ -3,6 +3,7 @@ from kivy.uix.screenmanager import Screen
 #from kivy.lang import Builder
 
 CHECK_FILE = '../databases/var/db/pcheck.chk'
+DB_PATH='../databases/var/db/'
 CHECK_STR = 'this should be readable'
 
 
@@ -78,6 +79,14 @@ class JanelaLogin (Screen):
     def on_pre_enter (self):
         # verifica se ja existe uma senha
         # Senao, chama o JanelaFirst
+        if not os.path.exists(DB_PATH):
+            try:
+                os.makedirs (DB_PATH, 0700)
+            except:
+                pass
+            f = open (DB_FILE, 'w+')
+            f.close()
+        
         if not os.path.exists(CHECK_FILE):
             print "pcheck nao existe!!!"
                 
