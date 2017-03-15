@@ -1,3 +1,14 @@
+Cython>=0.23.4
+Kivy==1.9.1
+buildozer==0.32
+python-for-android==0.4
+
+peewee==2.8.0
+pexpect==4.0.1
+ptyprocess==0.5.1
+pycrypto==2.6.1
+sqlitebck==1.2.1
+
 # Cython==0.23.4
 # Kivy==1.9.1
 # Kivy-Garden==0.1.4
@@ -7,22 +18,22 @@
 # pygame==1.9.2a0
 # requests==2.9.1
 # wsgiref==0.1.2
-
-#ib32z1-dev
-#  zlib1g:i386
-Cython==0.23.4
-Kivy==1.9.1
-Kivy-Garden==0.1.4
-argparse==1.2.1
-buildozer==0.31
-numpy==1.10.4
-peewee==2.8.0
-pexpect==4.0.1
-ptyprocess==0.5.1
-pycrypto==2.6.1
-# pip install hg+http://bitbucket.org/pygame/pygame
-# pygame==1.9.2a0
-requests==2.9.1
-sqlitebck==1.2.1
-virtualenv==15.0.1
-wsgiref==0.1.2
+# 
+# #ib32z1-dev
+# #  zlib1g:i386
+# Cython==0.23.4
+# Kivy==1.9.1
+# Kivy-Garden==0.1.4
+# argparse==1.2.1
+# buildozer==0.31
+# numpy==1.10.4
+# peewee==2.8.0
+# pexpect==4.0.1
+# ptyprocess==0.5.1
+# pycrypto==2.6.1
+# # pip install hg+http://bitbucket.org/pygame/pygame
+# # pygame==1.9.2a0
+# requests==2.9.1
+# sqlitebck==1.2.1
+# virtualenv==15.0.1
+# wsgiref==0.1.2
