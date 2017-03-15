@@ -95,8 +95,8 @@
             TextInput:
                 id: tx_bkppath
                 size_hint: 1.0, 0.3
-                #text: '/sdcard0/passwall.db'
-                text: 'passwallbk.db'
+                text: '/sdcard/passwall.db'
+                #text: 'passwallbk.db'
 
             Button:
                 id: butt_do_backup
@@ -108,6 +108,11 @@
                 id: butt_do_restore
                 text: 'Restore'
                 on_release: root.do_restore()
+                #size_hint: 1.0, 0.1d
+            Button:
+                id: butt_do_dump_2plaintext
+                text: 'Dump to Plaintext'
+                on_release: root.do_dump_2plaintext()
                 #size_hint: 1.0, 0.1d
             Label:
                 id: lb_result

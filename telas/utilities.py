@@ -2,6 +2,7 @@
 from kivy.uix.popup import Popup
 
 from kivy.uix.screenmanager import Screen
+from models.senhas import Senha, Collection
 
 import sqlite3
 #import sqlitebck
@@ -25,8 +26,6 @@ class Confirma (Popup):
         self.dismiss()
         
         
-        
-
         
         
 
@@ -71,7 +70,21 @@ class JanelaSettings (Screen):
         self.smanager.current = 'janela_collect'
         
         
-        
+       
+
+def dump_2plain_text(filename, encrypter):
+    cols = Collection.select()
+    f = open(filename, 'w')
+    for c in cols:
+        f.write (u'# %s - %s \n' % (encrypter.decripta (c.nome),c.last_updt))
+        sens = Senha.select().where( Senha.collect==c )
+        for s in sens:
+            f.write (u'>     %s - %s - %s \n' % (
+                encrypter.decripta (s.desc), 
+                encrypter.decripta (s.valor), 
+                s.last_updt))
+    f.close()
+    
     
 class JanelaBackup (Screen):
     def __init__(self, smanager=None, last_window=None, **kwargs):
@@ -90,6 +103,18 @@ class JanelaBackup (Screen):
         self.ids.lb_result.text = 'Wait...'
         p = Confirma (callback=self.really_restore, text='Restore from backup?')
         p.open()
+        
+    def do_dump_2plaintext(self):
+        """
+            Dump all data into plain text file
+        """
+        self.ids.lb_result.text = 'Wait...'
+        bkp_file = self.ids.tx_bkppath.text
+        try:
+            dump_2plain_text(bkp_file, self.smanager.encrypter)
+            self.ids.lb_result.text = 'Dump done! Keep it safe!!!'
+        except:
+            self.ids.lb_result.text = 'Error doing backup!!!'
         
     def really_restore (self, value):
         if value:
@@ -116,7 +141,7 @@ class JanelaBackup (Screen):
             elif mode == 'restore':
                 shutil.copyfile (bkp , data)
         except:
-            self.ids.lb_result.text = 'Error!'
+            self.ids.lb_result.text = 'Error doing backup!!!'
         #data = sqlite3.connect(DB_FILE)
         #bkp = sqlite3.connect(bkp_file)
         #if mode == 'bkp':

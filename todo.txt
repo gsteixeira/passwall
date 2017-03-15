@@ -1,0 +1,4 @@
+- Dump to file
+    dar dar out identado com valor em plaintext
+    
+- dump json <-> back ( serve para atualizar, dumpa em jon/plaintext )

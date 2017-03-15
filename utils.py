@@ -29,6 +29,7 @@ class Encriptador(object):
         self.chave_aes = senha_hash.hexdigest()
 
     def _pad (self, txt):
+        txt = txt.encode('ascii','ignore')
         bs = AES_BLOCK_SIZE
         length = bs - (len(txt) % bs)
         txt += chr(length)*length
