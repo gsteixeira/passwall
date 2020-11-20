@@ -1,13 +1,13 @@
 Cython>=0.23.4
-Kivy==1.9.1
-buildozer==0.32
-python-for-android==0.4
+Kivy>=1.9.1
+buildozer>=0.32
+python-for-android>=0.4
 
-peewee==2.8.0
-pexpect==4.0.1
-ptyprocess==0.5.1
-pycrypto==2.6.1
-sqlitebck==1.2.1
+peewee>=2.8.0
+pexpect>=4.0.1
+ptyprocess>=0.5.1
+pycrypto>=2.6.1
+sqlitebck>=1.2.1
 
 # Cython==0.23.4
 # Kivy==1.9.1

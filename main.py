@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+os.environ['KIVY_WINDOW'] = 'sdl2'
 import kivy
 kivy.require('1.9.0')
 __version__ = '0.1.2'
